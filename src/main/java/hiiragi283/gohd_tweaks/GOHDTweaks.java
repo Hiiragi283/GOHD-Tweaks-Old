@@ -1,5 +1,10 @@
 package hiiragi283.gohd_tweaks;
 
+import defeatedcrow.hac.api.climate.DCAirflow;
+import defeatedcrow.hac.api.climate.DCHeatTier;
+import defeatedcrow.hac.api.climate.DCHumidity;
+import defeatedcrow.hac.api.recipe.RecipeAPI;
+import hiiragi283.gohd_tweaks.blocks.BlockDust;
 import hiiragi283.gohd_tweaks.blocks.BlockGroutFormed;
 import hiiragi283.gohd_tweaks.items.*;
 import hiiragi283.gohd_tweaks.proxy.CommonProxy;
@@ -10,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -18,6 +24,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -33,15 +40,17 @@ import java.util.Objects;
 public class GOHDTweaks {
 
     //Blockの定義
+    public static final Block BlockDust = new BlockDust();
     public static final Block BlockGroutFormed = new BlockGroutFormed();
     //Itemの定義
+    public static final Item ItemBlockDust = new ItemBlockDust();
     public static final Item ItemBookSpawn = new ItemBookSpawn();
     public static final Item ItemBookSyntax = new ItemBookSyntax();
     public static final Item ItemGroutFormed = new ItemGroutFormed();
     public static final Item ItemPartsAssembly = new ItemPartsAssembly();
     public static final Item ItemRagiTicket = new ItemRagiTicket();
     //ログ出力用
-    public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
+    public static final Logger LoggerGOHD = LogManager.getLogger(Reference.MOD_ID);
     //Proxyの定義
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;
@@ -49,14 +58,20 @@ public class GOHDTweaks {
     @Mod.Instance(Reference.MOD_ID)
     public static GOHDTweaks Instance;
 
+    public Item getItem(String domain, String path) {
+        return ForgeRegistries.ITEMS.getValue(new ResourceLocation(domain, path));
+    }
+
     //Pre-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         //このクラスをイベントに登録
         MinecraftForge.EVENT_BUS.register(this);
         //Blockの登録
+        ForgeRegistries.BLOCKS.register(BlockDust);
         ForgeRegistries.BLOCKS.register(BlockGroutFormed);
         //Itemの登録
+        ForgeRegistries.ITEMS.register(ItemBlockDust);
         ForgeRegistries.ITEMS.register(ItemBookSpawn);
         ForgeRegistries.ITEMS.register(ItemBookSyntax);
         ForgeRegistries.ITEMS.register(ItemGroutFormed);
@@ -64,6 +79,28 @@ public class GOHDTweaks {
         ForgeRegistries.ITEMS.register(ItemRagiTicket);
         //Modelの登録
         proxy.register();
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event){
+        //Block of Platinumの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("thermalfoundation", "storage"), 1, 6), DCHeatTier.UHT, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "dustblock"), 1, 0));
+        //Block of Iridiumの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("thermalfoundation", "storage"), 1, 7), DCHeatTier.UHT, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "dustblock"), 1, 1));
+        //Block of Mana Infused Metalの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("thermalfoundation", "storage"), 1, 8), DCHeatTier.UHT, DCHumidity.UNDERWATER, DCAirflow.WIND, new ItemStack(getItem("gohd_tweaks", "dustblock"), 1, 2));
+        //Block of Electrumの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("thermalfoundation", "storage_alloy"), 1, 1), DCHeatTier.SMELTING, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "dustblock"), 1, 3));
+        //Block of Invarの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("thermalfoundation", "storage_alloy"), 1, 2), DCHeatTier.SMELTING, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "dustblock"), 1, 4));
+        //Block of Constantanの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("thermalfoundation", "storage_alloy"), 1, 4), DCHeatTier.SMELTING, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "dustblock"), 1, 5));
+        //Casting Tableの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("tconstruct", "casting"), 1, 0), DCHeatTier.KILN, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "grout_formed"), 1, 0));
+        //Casting Basinの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("tconstruct", "casting"), 1, 1), DCHeatTier.KILN, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "grout_formed"), 1, 1));
+        //Casting Channelの気候精錬レシピの登録
+        RecipeAPI.registerSmelting.addRecipe(new ItemStack(getItem("tconstruct", "channel"), 1, 0), DCHeatTier.KILN, null, DCAirflow.TIGHT, new ItemStack(getItem("gohd_tweaks", "grout_formed"), 1, 2));
     }
 
     //プレイヤーがログインすると呼ばれるevent

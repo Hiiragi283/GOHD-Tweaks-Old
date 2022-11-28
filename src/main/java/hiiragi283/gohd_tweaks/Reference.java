@@ -8,7 +8,7 @@ public class Reference {
     //Modのバージョンの定義
     public static final String VERSION = "v0.0.1";
     //依存関係の定義
-    public static final String DEPENDENCIES = "";
+    public static final String DEPENDENCIES = "required-after:dcs_lib;required-after:thermalfoundation";
     //対応するMCのバージョンの定義
     public static final String MC_VERSIONS = "[1.12,1.12.2]";
     //Server側のProxyの定義

@@ -18,17 +18,23 @@ public class ClientProxy extends CommonProxy {
 
     //各Itemのモデルファイルのパスを指定するメソッド
     public void setModels() {
+        setModel(ItemBlockDust, 0);
+        setModel(ItemBlockDust, 1);
+        setModel(ItemBlockDust, 2);
+        setModel(ItemBlockDust, 3);
+        setModel(ItemBlockDust, 4);
+        setModel(ItemBlockDust, 5);
         setModel(ItemBookSpawn, 0);
         setModel(ItemBookSyntax, 0);
+        setModel(ItemGroutFormed, 0);
+        setModel(ItemGroutFormed, 1);
+        setModel(ItemGroutFormed, 2);
         setModel(ItemPartsAssembly, 0);
         setModel(ItemPartsAssembly, 1);
         setModel(ItemPartsAssembly, 2);
         setModel(ItemPartsAssembly, 3);
         setModel(ItemPartsAssembly, 4);
         setModel(ItemRagiTicket, 0);
-        setModel(ItemGroutFormed, 0);
-        setModel(ItemGroutFormed, 1);
-        setModel(ItemGroutFormed, 2);
     }
 
     //Client側のProxyで行われる処理をまとめたメソッド
