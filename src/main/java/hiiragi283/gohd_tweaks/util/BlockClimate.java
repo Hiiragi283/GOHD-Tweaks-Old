@@ -5,6 +5,7 @@ import defeatedcrow.hac.api.recipe.IClimateSmelting;
 import defeatedcrow.hac.api.recipe.RecipeAPI;
 import defeatedcrow.hac.config.CoreConfigDC;
 import defeatedcrow.hac.core.util.DCUtil;
+import hiiragi283.gohd_tweaks.GOHDTweaks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
-
-import static hiiragi283.gohd_tweaks.GOHDTweaks.LoggerGOHD;
 
 public class BlockClimate extends BlockCommon {
 
@@ -80,7 +79,7 @@ public class BlockClimate extends BlockCommon {
                         // 効果音
                         if (playSEOnChanging(meta)) {
                             world.playSound(null, pos, getSE(meta), SoundCategory.BLOCKS, 0.8F, 2.0F);
-                            LoggerGOHD.info("Smelting! " + output.getDisplayName());
+                            GOHDTweaks.LoggerGOHD.info("Smelting! " + output.getDisplayName());
                         }
                         return true;
                     }

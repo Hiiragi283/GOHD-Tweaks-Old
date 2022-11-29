@@ -1,12 +1,11 @@
 package hiiragi283.gohd_tweaks.proxy;
 
+import hiiragi283.gohd_tweaks.GOHDTweaks;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import static hiiragi283.gohd_tweaks.GOHDTweaks.*;
 
 public class ClientProxy extends CommonProxy {
 
@@ -18,23 +17,23 @@ public class ClientProxy extends CommonProxy {
 
     //各Itemのモデルファイルのパスを指定するメソッド
     public void setModels() {
-        setModel(ItemBlockDust, 0);
-        setModel(ItemBlockDust, 1);
-        setModel(ItemBlockDust, 2);
-        setModel(ItemBlockDust, 3);
-        setModel(ItemBlockDust, 4);
-        setModel(ItemBlockDust, 5);
-        setModel(ItemBookSpawn, 0);
-        setModel(ItemBookSyntax, 0);
-        setModel(ItemGroutFormed, 0);
-        setModel(ItemGroutFormed, 1);
-        setModel(ItemGroutFormed, 2);
-        setModel(ItemPartsAssembly, 0);
-        setModel(ItemPartsAssembly, 1);
-        setModel(ItemPartsAssembly, 2);
-        setModel(ItemPartsAssembly, 3);
-        setModel(ItemPartsAssembly, 4);
-        setModel(ItemRagiTicket, 0);
+        setModel(GOHDTweaks.ItemBlockDust, 0);
+        setModel(GOHDTweaks.ItemBlockDust, 1);
+        setModel(GOHDTweaks.ItemBlockDust, 2);
+        setModel(GOHDTweaks.ItemBlockDust, 3);
+        setModel(GOHDTweaks.ItemBlockDust, 4);
+        setModel(GOHDTweaks.ItemBlockDust, 5);
+        setModel(GOHDTweaks.ItemBookSpawn, 0);
+        setModel(GOHDTweaks.ItemBookSyntax, 0);
+        setModel(GOHDTweaks.ItemGroutFormed, 0);
+        setModel(GOHDTweaks.ItemGroutFormed, 1);
+        setModel(GOHDTweaks.ItemGroutFormed, 2);
+        setModel(GOHDTweaks.ItemPartsAssembly, 0);
+        setModel(GOHDTweaks.ItemPartsAssembly, 1);
+        setModel(GOHDTweaks.ItemPartsAssembly, 2);
+        setModel(GOHDTweaks.ItemPartsAssembly, 3);
+        setModel(GOHDTweaks.ItemPartsAssembly, 4);
+        setModel(GOHDTweaks.ItemRagiTicket, 0);
     }
 
     //Client側のProxyで行われる処理をまとめたメソッド

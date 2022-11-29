@@ -51,21 +51,7 @@ minecraft {
         }
     }
 
-    repositories {
-        maven {
-            name = "Progwml6 maven"
-            url = "https://dvs1.progwml6.com/files/maven/"
-        }
-        maven {
-            name = "ModMaven"
-            url = "https://modmaven.dev"
-        }
-        maven {
-            name = "tterrag maven"
-            url = "http://maven.tterrag.com/"
-            allowInsecureProtocol true
-        }
-    }
+    repositories {}
 
     dependencies {
         minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
