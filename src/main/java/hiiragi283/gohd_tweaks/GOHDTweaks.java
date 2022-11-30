@@ -1,8 +1,5 @@
 package hiiragi283.gohd_tweaks;
 
-import hiiragi283.gohd_tweaks.blocks.BlockDust;
-import hiiragi283.gohd_tweaks.blocks.BlockGroutFormed;
-import hiiragi283.gohd_tweaks.items.*;
 import hiiragi283.gohd_tweaks.proxy.CommonProxy;
 import hiiragi283.gohd_tweaks.recipes.ClimateRecipe;
 import net.minecraft.block.Block;
@@ -25,7 +22,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,16 +31,6 @@ import java.util.Objects;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, acceptedMinecraftVersions = Reference.MC_VERSIONS)
 public class GOHDTweaks {
 
-    //Blockの定義
-    public static final Block BlockDust = new BlockDust();
-    public static final Block BlockGroutFormed = new BlockGroutFormed();
-    //Itemの定義
-    public static final Item ItemBlockDust = new ItemBlockDust();
-    public static final Item ItemBookSpawn = new ItemBookSpawn();
-    public static final Item ItemBookSyntax = new ItemBookSyntax();
-    public static final Item ItemGroutFormed = new ItemGroutFormed();
-    public static final Item ItemPartsAssembly = new ItemPartsAssembly();
-    public static final Item ItemRagiTicket = new ItemRagiTicket();
     //ログ出力用
     public static final Logger LoggerGOHD = LogManager.getLogger(Reference.MOD_ID);
     //Proxyの定義
@@ -59,18 +45,10 @@ public class GOHDTweaks {
     public void preInit(FMLPreInitializationEvent event) {
         //このクラスをイベントに登録
         MinecraftForge.EVENT_BUS.register(this);
-        //Blockの登録
-        ForgeRegistries.BLOCKS.register(BlockDust);
-        ForgeRegistries.BLOCKS.register(BlockGroutFormed);
-        //Itemの登録
-        ForgeRegistries.ITEMS.register(ItemBlockDust);
-        ForgeRegistries.ITEMS.register(ItemBookSpawn);
-        ForgeRegistries.ITEMS.register(ItemBookSyntax);
-        ForgeRegistries.ITEMS.register(ItemGroutFormed);
-        ForgeRegistries.ITEMS.register(ItemPartsAssembly);
-        ForgeRegistries.ITEMS.register(ItemRagiTicket);
-        //Modelの登録
-        proxy.register();
+        //BlockやItemの登録
+        GOHDInit.Register();
+        //ItemのModelの登録
+        proxy.Register();
     }
 
     @Mod.EventHandler

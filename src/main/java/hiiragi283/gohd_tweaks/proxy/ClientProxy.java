@@ -1,6 +1,6 @@
 package hiiragi283.gohd_tweaks.proxy;
 
-import hiiragi283.gohd_tweaks.GOHDTweaks;
+import hiiragi283.gohd_tweaks.GOHDInit;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -17,27 +17,27 @@ public class ClientProxy extends CommonProxy {
 
     //各Itemのモデルファイルのパスを指定するメソッド
     public void setModels() {
-        setModel(GOHDTweaks.ItemBlockDust, 0);
-        setModel(GOHDTweaks.ItemBlockDust, 1);
-        setModel(GOHDTweaks.ItemBlockDust, 2);
-        setModel(GOHDTweaks.ItemBlockDust, 3);
-        setModel(GOHDTweaks.ItemBlockDust, 4);
-        setModel(GOHDTweaks.ItemBlockDust, 5);
-        setModel(GOHDTweaks.ItemBookSpawn, 0);
-        setModel(GOHDTweaks.ItemBookSyntax, 0);
-        setModel(GOHDTweaks.ItemGroutFormed, 0);
-        setModel(GOHDTweaks.ItemGroutFormed, 1);
-        setModel(GOHDTweaks.ItemGroutFormed, 2);
-        setModel(GOHDTweaks.ItemPartsAssembly, 0);
-        setModel(GOHDTweaks.ItemPartsAssembly, 1);
-        setModel(GOHDTweaks.ItemPartsAssembly, 2);
-        setModel(GOHDTweaks.ItemPartsAssembly, 3);
-        setModel(GOHDTweaks.ItemPartsAssembly, 4);
-        setModel(GOHDTweaks.ItemRagiTicket, 0);
+        setModel(GOHDInit.ItemBlockDust, 0);
+        setModel(GOHDInit.ItemBlockDust, 1);
+        setModel(GOHDInit.ItemBlockDust, 2);
+        setModel(GOHDInit.ItemBlockDust, 3);
+        setModel(GOHDInit.ItemBlockDust, 4);
+        setModel(GOHDInit.ItemBlockDust, 5);
+        setModel(GOHDInit.ItemBookSpawn, 0);
+        setModel(GOHDInit.ItemBookSyntax, 0);
+        setModel(GOHDInit.ItemGroutFormed, 0);
+        setModel(GOHDInit.ItemGroutFormed, 1);
+        setModel(GOHDInit.ItemGroutFormed, 2);
+        setModel(GOHDInit.ItemPartsAssembly, 0);
+        setModel(GOHDInit.ItemPartsAssembly, 1);
+        setModel(GOHDInit.ItemPartsAssembly, 2);
+        setModel(GOHDInit.ItemPartsAssembly, 3);
+        setModel(GOHDInit.ItemPartsAssembly, 4);
+        setModel(GOHDInit.ItemRagiTicket, 0);
     }
 
     //Client側のProxyで行われる処理をまとめたメソッド
-    public void register() {
+    public void Register() {
         setModels();
     }
 }
