@@ -1,8 +1,7 @@
 package hiiragi283.gohd_tweaks;
 
 import hiiragi283.gohd_tweaks.proxy.CommonProxy;
-import hiiragi283.gohd_tweaks.recipes.ClimateRecipe;
-import hiiragi283.gohd_tweaks.recipes.ThermalRecipe;
+import hiiragi283.gohd_tweaks.recipes.IntegrationCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,11 +50,11 @@ public class GOHDTweaks {
         //ItemのModelの登録
         proxy.Register();
     }
-
+    //Post-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        ClimateRecipe.Init();
-        ThermalRecipe.Init();
+        //他modとの連携レシピの登録
+        IntegrationCore.Init();
     }
 
     //プレイヤーがログインすると呼ばれるevent
