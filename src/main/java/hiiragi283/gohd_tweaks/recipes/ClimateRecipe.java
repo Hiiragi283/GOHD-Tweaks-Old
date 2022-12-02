@@ -34,7 +34,8 @@ public class ClimateRecipe {
 
     //HaC独自の液体辞書を登録するメソッド
     public static void FluidDic() {
-        //DCPluginFluid.registerFluidDic("dcs.nitric_acid", "nitricacid");
+        DCPluginFluid.registerFluidDic("experience", "exp");
+        DCPluginFluid.registerFluidDic("xpjuice", "exp");
     }
 
     //HaCの液体燃料を登録するメソッド
@@ -44,6 +45,12 @@ public class ClimateRecipe {
 
     //液体をHaC経由で飲んだ際に特定のポーション効果を付与するメソッド
     public static void FluidPotion() {
-        //DCPluginFluid.registerPotion("lava", Potion.getPotionFromResourceLocation("minecraft:nausea"));
+        DCPluginFluid.registerPotion("astralsorcery.liquidstarlight", Potion.getPotionFromResourceLocation("minecraft:night_vision"));
+        DCPluginFluid.registerPotion("beetroot_soup", Potion.getPotionFromResourceLocation("minecraft:instant_health"));
+        DCPluginFluid.registerPotion("blueslime", Potion.getPotionFromResourceLocation("minecraft:jump_boost"));
+        DCPluginFluid.registerPotion("dcs.mazai", Potion.getPotionFromResourceLocation("minecraft:nausea"));
+        DCPluginFluid.registerPotion("potato_soup", Potion.getPotionFromResourceLocation("minecraft:instant_health"));
+        DCPluginFluid.registerPotion("purpleslime", Potion.getPotionFromResourceLocation("minecraft:luck"));
+        DCPluginFluid.registerPotion("rabbit_stew", Potion.getPotionFromResourceLocation("minecraft:instant_health"));
     }
 }

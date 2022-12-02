@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java-library'
 
-version = "v0.3.0"
+version = "v0.4.0"
 group = 'hiiragi283.gohd_tweaks' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'GOHD_Tweaks'
 tasks.withType(JavaCompile) {
