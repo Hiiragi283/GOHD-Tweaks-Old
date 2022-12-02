@@ -4,12 +4,23 @@ import defeatedcrow.hac.api.climate.DCAirflow;
 import defeatedcrow.hac.api.climate.DCHeatTier;
 import defeatedcrow.hac.api.climate.DCHumidity;
 import defeatedcrow.hac.api.recipe.RecipeAPI;
+import defeatedcrow.hac.plugin.DCPluginFluid;
 import hiiragi283.gohd_tweaks.util.GOHDUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 
 public class ClimateRecipe {
+
+    //HaCとの連携レシピをまとめて登録するメソッド
     public static void Init() {
-        //気候精錬のレシピの登録
+        ClimateSmelting();
+        FluidDic();
+        FluidFuel();
+        FluidPotion();
+    }
+
+    //気候精錬のレシピを登録するメソッド
+    public static void ClimateSmelting() {
         RecipeAPI.registerSmelting.addRecipe(new ItemStack(GOHDUtils.getItem("thermalfoundation", "storage"), 1, 6), DCHeatTier.UHT, null, DCAirflow.TIGHT, new ItemStack(GOHDUtils.getItem("gohd_tweaks", "dustblock"), 1, 0));
         RecipeAPI.registerSmelting.addRecipe(new ItemStack(GOHDUtils.getItem("thermalfoundation", "storage"), 1, 7), DCHeatTier.UHT, null, DCAirflow.TIGHT, new ItemStack(GOHDUtils.getItem("gohd_tweaks", "dustblock"), 1, 1));
         RecipeAPI.registerSmelting.addRecipe(new ItemStack(GOHDUtils.getItem("thermalfoundation", "storage"), 1, 8), DCHeatTier.UHT, DCHumidity.UNDERWATER, DCAirflow.WIND, new ItemStack(GOHDUtils.getItem("gohd_tweaks", "dustblock"), 1, 2));
@@ -19,5 +30,20 @@ public class ClimateRecipe {
         RecipeAPI.registerSmelting.addRecipe(new ItemStack(GOHDUtils.getItem("tconstruct", "casting"), 1, 0), DCHeatTier.KILN, null, DCAirflow.TIGHT, new ItemStack(GOHDUtils.getItem("gohd_tweaks", "grout_formed"), 1, 0));
         RecipeAPI.registerSmelting.addRecipe(new ItemStack(GOHDUtils.getItem("tconstruct", "casting"), 1, 1), DCHeatTier.KILN, null, DCAirflow.TIGHT, new ItemStack(GOHDUtils.getItem("gohd_tweaks", "grout_formed"), 1, 1));
         RecipeAPI.registerSmelting.addRecipe(new ItemStack(GOHDUtils.getItem("tconstruct", "channel"), 1, 0), DCHeatTier.KILN, null, DCAirflow.TIGHT, new ItemStack(GOHDUtils.getItem("gohd_tweaks", "grout_formed"), 1, 2));
+    }
+
+    //HaC独自の液体辞書を登録するメソッド
+    public static void FluidDic() {
+        //DCPluginFluid.registerFluidDic("dcs.nitric_acid", "nitricacid");
+    }
+
+    //HaCの液体燃料を登録するメソッド
+    public static void FluidFuel() {
+        //DCPluginFluid.registerFuel("dcs.hydrogen", "hydrogen", 100);
+    }
+
+    //液体をHaC経由で飲んだ際に特定のポーション効果を付与するメソッド
+    public static void FluidPotion() {
+        //DCPluginFluid.registerPotion("lava", Potion.getPotionFromResourceLocation("minecraft:nausea"));
     }
 }

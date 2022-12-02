@@ -11,8 +11,8 @@ public class Reference {
     public static final String DEPENDENCIES = "required-after:dcs_lib;required-after:dcs_climate";
     //対応するMCのバージョンの定義
     public static final String MC_VERSIONS = "[1.12,1.12.2]";
-    //Server側のProxyの定義
-    public static final String CLIENT_PROXY_CLASS = "hiiragi283.gohd_tweaks.proxy.ClientProxy";
     //Client側のProxyの定義
+    public static final String CLIENT_PROXY_CLASS = "hiiragi283.gohd_tweaks.proxy.ClientProxy";
+    //Server側のProxyの定義
     public static final String SERVER_PROXY_CLASS = "hiiragi283.gohd_tweaks.proxy.CommonProxy";
 }
