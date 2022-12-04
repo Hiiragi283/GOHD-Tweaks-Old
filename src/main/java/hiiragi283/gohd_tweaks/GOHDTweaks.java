@@ -7,8 +7,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -24,6 +22,8 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import twilightforest.block.BlockTFRoots;
+import twilightforest.enums.RootVariant;
 
 import java.util.Objects;
 
@@ -50,6 +50,7 @@ public class GOHDTweaks {
         //ItemのModelの登録
         proxy.Register();
     }
+
     //Post-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
@@ -94,26 +95,6 @@ public class GOHDTweaks {
                 ItemStack stackOff = player.getHeldItemOffhand();
                 Item itemOff = stackOff.getItem();
             }
-            //プレイヤーと同じ座標にあるブロックのIDが"dcs_climate:dcs_fluidblock_hotspring"と一致する場合
-            if (block.getRegistryName().toString().equals("dcs_climate:dcs_fluidblock_hotspring")) {
-                //プレイヤーに再生Iのバフを5秒与える
-                player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("minecraft:regeneration"), 110, 0));
-            }
-            //プレイヤーと同じ座標にあるブロックのIDが"dcs_climate:dcs_fluidblock_mazai"と一致する場合
-            if (block.getRegistryName().toString().equals("dcs_climate:dcs_fluidblock_mazai")) {
-                //プレイヤーに吐き気Iのバフを5秒与える
-                player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("minecraft:nausea"), 110, 0));
-            }
-            //プレイヤーと同じ座標にあるブロックのIDが"construct:blueslime"と一致する場合
-            if (block.getRegistryName().toString().equals("tconstruct:blueslime")) {
-                //プレイヤーに跳躍力IIIのバフを5秒与える
-                player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("minecraft:jump_boost"), 110, 2));
-            }
-            //プレイヤーと同じ座標にあるブロックのIDが"tconstruct:purpleslime"と一致する場合
-            if (block.getRegistryName().toString().equals("tconstruct:purpleslime")) {
-                //プレイヤーに幸運IIIのバフを5秒与える
-                player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("minecraft:luck"), 110, 2));
-            }
         }
     }
 
@@ -137,6 +118,8 @@ public class GOHDTweaks {
                 player.sendMessage(new TextComponentString("§lName:§r " + block.getPickBlock(blockstate, player.rayTrace(0, 0), world, pos, player).getDisplayName()));
                 //ブロックのIDをチャットに表示
                 player.sendMessage(new TextComponentString("§lID:§r " + block.getRegistryName()));
+                //ブロックのBlockstateをチャットに表示
+                player.sendMessage(new TextComponentString("§lBlockstate:§r " + blockstate));
                 //ブロックのHardnessをチャットに表示
                 player.sendMessage(new TextComponentString("§lHardness:§r " + block.getBlockHardness(blockstate, world, pos)));
                 //ブロックのResistanceをチャットに表示
@@ -145,6 +128,14 @@ public class GOHDTweaks {
                 player.sendMessage(new TextComponentString("§lHarvest Tool:§r " + block.getHarvestTool(blockstate)));
                 //適正レベルをチャットに表示
                 player.sendMessage(new TextComponentString("§lHarvest Level:§r " + block.getHarvestLevel(blockstate)));
+            }
+            //根ブロックを苔玉で右クリックすると苔を生やすwww
+            if (item.getRegistryName().toString().equals("tconstruct:materials") && stack.getMetadata() == 18) {
+                //blockstateがROOTに等しい場合
+                if (blockstate == block.getDefaultState().withProperty(BlockTFRoots.VARIANT, RootVariant.ROOT)) {
+                    //blockstateをLIVEROOTに差し替える
+                    world.setBlockState(pos, block.getDefaultState().withProperty(BlockTFRoots.VARIANT, RootVariant.LIVEROOT));
+                }
             }
         }
     }
