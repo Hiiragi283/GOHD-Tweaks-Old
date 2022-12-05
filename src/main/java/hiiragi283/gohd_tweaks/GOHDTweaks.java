@@ -2,6 +2,7 @@ package hiiragi283.gohd_tweaks;
 
 import hiiragi283.gohd_tweaks.proxy.CommonProxy;
 import hiiragi283.gohd_tweaks.recipes.IntegrationCore;
+import hiiragi283.gohd_tweaks.util.GOHDUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,8 +23,6 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import twilightforest.block.BlockTFRoots;
-import twilightforest.enums.RootVariant;
 
 import java.util.Objects;
 
@@ -131,10 +130,10 @@ public class GOHDTweaks {
             }
             //根ブロックを苔玉で右クリックすると苔を生やすwww
             if (item.getRegistryName().toString().equals("tconstruct:materials") && stack.getMetadata() == 18) {
-                //blockstateがROOTに等しい場合
-                if (blockstate == block.getDefaultState().withProperty(BlockTFRoots.VARIANT, RootVariant.ROOT)) {
-                    //blockstateをLIVEROOTに差し替える
-                    world.setBlockState(pos, block.getDefaultState().withProperty(BlockTFRoots.VARIANT, RootVariant.LIVEROOT));
+                //blockstateが根ブロックに等しい場合
+                if (blockstate == GOHDUtils.getBlock("twilightforest", "root").getStateFromMeta(0)) {
+                    //blockstateを根ブロック(苔)に差し替える
+                    world.setBlockState(pos, block.getStateFromMeta(1));
                 }
             }
         }
